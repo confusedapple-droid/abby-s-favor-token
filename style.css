@@ -1,0 +1,55 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #0e0e11;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+#card {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  width: 360px;
+}
+
+.favor-slot {
+  border: 1px solid #333;
+  padding: 10px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.favor-slot.used {
+  opacity: 0.4;
+}
+
+.favor-slot canvas {
+  width: 100%;
+  height: 60px;
+  border: 1px dashed #555;
+}
+
+.used-stamp {
+  position: absolute;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: red;
+  font-size: 18px;
+}
+
+.favor-slot.used .used-stamp {
+  display: flex;
+}
+
+.lock-btn {
+  margin-top: 6px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 4px 8px;
+}
