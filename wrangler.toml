@@ -2,5 +2,6 @@ name = "abby-s-favor-tokens"
 main = "worker.js"
 compatibility_date = "2025-01-01"
 
-[vars]
-ENV = "prod"
+kv_namespaces = [
+  { binding = "FAVORS", id = "REPLACE_WITH_YOUR_KV_ID" }
+]
