@@ -1,4 +1,4 @@
-name = "favor-cards-worker"
+name = "abby-s-favor-tokens"
 main = "worker.js"
 compatibility_date = "2025-01-01"
 
