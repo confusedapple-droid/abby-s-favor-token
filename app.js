@@ -1,9 +1,14 @@
+const WORKER_URL = 'https://abby-s-favor-tokens.nartea-jerick-bsn.workers.dev';
+
 const slots = document.getElementById('slots');
 const card = document.getElementById('card');
 const unlock = document.getElementById('unlock');
 
-function flip(v){
-  v ? card.classList.add('flipped') : card.classList.remove('flipped');
+/* ---------- CARD FLIP ---------- */
+function flip(force){
+  if(force === true) card.classList.add('flipped');
+  else if(force === false) card.classList.remove('flipped');
+  else card.classList.toggle('flipped');
 }
 
 /* ---------- CREATE SLOTS ---------- */
@@ -17,9 +22,9 @@ for(let i=1;i<=6;i++){
     </div>`;
 }
 
-/* ---------- SYNC FROM SERVER ---------- */
+/* ---------- GLOBAL SYNC ---------- */
 async function syncFromServer(){
-  const res = await fetch('/');
+  const res = await fetch(WORKER_URL);
   const { state } = await res.json();
 
   document.querySelectorAll('.favor-slot').forEach((slot,i)=>{
@@ -41,8 +46,8 @@ document.querySelectorAll('.favor-slot').forEach((slot,i)=>{
 
   let drawing = false;
 
-  async function updateState(){
-    await fetch('/use', {
+  async function markUsed(){
+    await fetch(`${WORKER_URL}/use`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ index: i })
@@ -60,7 +65,7 @@ document.querySelectorAll('.favor-slot').forEach((slot,i)=>{
     if(!drawing) return;
     drawing = false;
     slot.classList.add('used');
-    updateState();
+    markUsed();
   }
 
   function draw(e){
@@ -89,14 +94,14 @@ document.querySelectorAll('.favor-slot').forEach((slot,i)=>{
     e.stopPropagation();
     if(slot.classList.contains('used')) return;
     slot.classList.add('used');
-    updateState();
+    markUsed();
   };
 });
 
-/* ---------- SECRET RESET ---------- */
+/* ---------- SECRET RESET (BACK ONLY) ---------- */
 unlock.addEventListener('input', async ()=>{
   if(unlock.value.toLowerCase() === 'apple'){
-    const res = await fetch('/reset', {
+    const res = await fetch(`${WORKER_URL}/reset`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ code: unlock.value })
@@ -105,7 +110,7 @@ unlock.addEventListener('input', async ()=>{
     if(res.ok){
       unlock.value = '';
       await syncFromServer();
-      alert('All favors reset (global)');
+      alert('✨ All favors reset ✨');
     }
   }
 });
