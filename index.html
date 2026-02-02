@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Favor Card</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-</head>
 <body>
 
-  <div id="card" onclick="flip(true)">
-    <h1>Favor Card</h1>
-    <div id="slots"></div>
-    <input id="unlock" placeholder="Secret reset code" />
-    <button onclick="flip(false)">Close</button>
+  <div class="scene" onclick="flip()">
+    <div id="card">
+
+      <!-- FRONT OF CARD -->
+      <div class="card-face front">
+        <h1>Abby’s Favors</h1>
+        <p class="subtitle">Six wishes. Use wisely.</p>
+
+        <div id="slots"></div>
+
+        <p class="tap">Tap card to flip</p>
+      </div>
+
+      <!-- BACK OF CARD -->
+      <div class="card-face back">
+        <h2>🧞 Genie Rules</h2>
+        <ol>
+          <li>Each favor may be used only once.</li>
+          <li>No undoing a used favor.</li>
+          <li>No asking for more favors.</li>
+          <li>The genie decides how.</li>
+          <li>The genie is always watching.</li>
+        </ol>
+
+        <input id="unlock" placeholder="Secret code" />
+        <p class="hint">A simple fruit 🍎</p>
+      </div>
+
+    </div>
   </div>
 
   <script src="app.js"></script>
 </body>
-</html>
-
