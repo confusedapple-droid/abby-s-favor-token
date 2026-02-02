@@ -1,9 +1,11 @@
-{
-  "name": "abby-s-favor-token",
-  "main": "worker.js",
-  "compatibility_date": "2026-02-02",
-  "assets": {
-    "directory": "./",
-    "binding": "ASSETS"
+export default {
+  async fetch(request, env) {
+    return new Response(JSON.stringify({
+      status: "ok",
+      service: "favor-cards-worker",
+      time: new Date().toISOString()
+    }), {
+      headers: { "content-type": "application/json" }
+    });
   }
-}
+};
