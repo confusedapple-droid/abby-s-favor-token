@@ -1,4 +1,4 @@
-const WORKER_URL = 'https://abby-s-favor-tokens.nartea-jerick-bsn.workers.dev/';
+const WORKER_URL = 'https://abby-s-favor-tokens.nartea-jerick-bsn.workers.dev';
 
 const slots = document.getElementById('slots');
 const card = document.getElementById('card');
